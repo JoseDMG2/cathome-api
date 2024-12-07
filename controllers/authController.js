@@ -106,33 +106,11 @@ const getUserById = async (req, res) => {
     }
 };
 
-// Obtener un usuario por correo
-const getUserByEmail = async (req, res) => {
-    try {
-        const { correo } = req.params; // Obtener el correo desde los parámetros de la URL
-        const user = await User.findOne({ correo }); // Buscar el usuario por correo
-
-        if (!user) {
-            return res.status(404).json({
-                error: 'Usuario no encontrado',
-            });
-        }
-
-        return res.json(user); // Devuelve el usuario encontrado
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            error: 'Ocurrió un error al obtener el usuario',
-        });
-    }
-};
-
 
 module.exports = {
     test,
     registerUser,
     loginUser,
     getUsers,
-    getUserById,
-    getUserByEmail
+    getUserById
 }
